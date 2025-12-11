@@ -1,0 +1,41 @@
+# ==============================================================================
+# Grafana Datasource Provisioning
+# ==============================================================================
+
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true
+    editable: false
+    jsonData:
+      timeInterval: "15s"
+      queryTimeout: "60s"
+      httpMethod: "POST"
+
+  - name: Lavalink-SG
+    type: prometheus
+    access: proxy
+    url: http://lavalink-node1:2333
+    editable: false
+    jsonData:
+      httpMethod: "GET"
+
+  - name: Lavalink-DE
+    type: prometheus
+    access: proxy
+    url: http://lavalink-node2:2334
+    editable: false
+    jsonData:
+      httpMethod: "GET"
+
+  - name: Lavalink-US
+    type: prometheus
+    access: proxy
+    url: http://lavalink-node3:2335
+    editable: false
+    jsonData:
+      httpMethod: "GET"

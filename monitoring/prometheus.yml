@@ -1,0 +1,101 @@
+# ==============================================================================
+# Prometheus Configuration
+# Lavalink Cluster Monitoring
+# ==============================================================================
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'lavalink-cluster'
+
+# Alerting configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+# Rule files
+rule_files:
+  - /etc/prometheus/rules/*.yml
+
+# Scrape configurations
+scrape_configs:
+  # ==============================================================================
+  # Prometheus Self-Monitoring
+  # ==============================================================================
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+    metrics_path: /metrics
+    scheme: http
+
+  # ==============================================================================
+  # Lavalink Nodes
+  # ==============================================================================
+  - job_name: 'lavalink-nodes'
+    static_configs:
+      - targets:
+          - 'lavalink-node1:2333'
+          - 'lavalink-node2:2334'
+          - 'lavalink-node3:2335'
+          - 'lavalink-backup:2336'
+        labels:
+          cluster: 'production'
+    metrics_path: /metrics
+    scheme: http
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: 'lavalink-node1:.*'
+        target_label: region
+        replacement: 'singapore'
+      - source_labels: [__address__]
+        regex: 'lavalink-node2:.*'
+        target_label: region
+        replacement: 'germany'
+      - source_labels: [__address__]
+        regex: 'lavalink-node3:.*'
+        target_label: region
+        replacement: 'us-east'
+      - source_labels: [__address__]
+        regex: 'lavalink-backup:.*'
+        target_label: region
+        replacement: 'india'
+
+  # ==============================================================================
+  # HAProxy Stats
+  # ==============================================================================
+  - job_name: 'haproxy'
+    static_configs:
+      - targets: ['haproxy:8404']
+    metrics_path: /metrics
+    scheme: http
+
+  # ==============================================================================
+  # Redis Exporter
+  # ==============================================================================
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis:6379']
+    metrics_path: /metrics
+    scheme: http
+
+  # ==============================================================================
+  # Node Exporter (Host Metrics)
+  # ==============================================================================
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets:
+          - 'node-exporter:9100'
+    metrics_path: /metrics
+    scheme: http
+
+  # ==============================================================================
+  # IP Health Monitor
+  # ==============================================================================
+  - job_name: 'ip-monitor'
+    static_configs:
+      - targets: ['ip-monitor:9090']
+    metrics_path: /metrics
+    scheme: http
+    scrape_interval: 30s

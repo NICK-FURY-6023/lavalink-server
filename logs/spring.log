@@ -206,3 +206,171 @@ Caused by: java.lang.IllegalArgumentException: Yandex Music accessToken must be 
 	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:208) ~[spring-beans-6.1.9.jar!/:6.1.9]
 	... 59 common frames omitted
 
+2025-12-11T15:26:00.174Z  INFO 36818 --- [Lavalink] [main] lavalink.server.Launcher                 : Starting Launcher v4.0.8 using Java 21.0.9 with PID 36818 (/workspaces/lavalink-server/Lavalink.jar started by codespace in /workspaces/lavalink-server)
+2025-12-11T15:26:00.193Z  INFO 36818 --- [Lavalink] [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2025-12-11T15:26:01.964Z  INFO 36818 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Downloading https://maven.lavalink.dev/releases/com/dunctebot/skybot-lavalink-plugin/1.7.0/skybot-lavalink-plugin-1.7.0.jar
+2025-12-11T15:26:04.369Z  INFO 36818 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Downloading https://maven.lavalink.dev/releases/com/github/topi314/lavasearch/lavasearch-plugin/1.0.0/lavasearch-plugin-1.0.0.jar
+2025-12-11T15:26:04.978Z  INFO 36818 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Downloading https://maven.lavalink.dev/releases/com/github/topi314/lavalyrics/lavalyrics-plugin/1.0.0/lavalyrics-plugin-1.0.0.jar
+2025-12-11T15:26:05.587Z  INFO 36818 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Downloading https://maven.lavalink.dev/releases/com/github/topi314/lavasrc/lavasrc-plugin/4.3.0/lavasrc-plugin-4.3.0.jar
+2025-12-11T15:26:06.412Z  INFO 36818 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Downloading https://maven.lavalink.dev/releases/com/github/topi314/sponsorblock/sponsorblock-plugin/3.0.1/sponsorblock-plugin-3.0.1.jar
+2025-12-11T15:26:07.028Z  INFO 36818 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Downloading https://maven.lavalink.dev/releases/dev/lavalink/youtube/youtube-plugin/1.11.2/youtube-plugin-1.11.2.jar
+2025-12-11T15:26:07.586Z  INFO 36818 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Loaded skybot-lavalink-plugin-1.7.0.jar (4 classes)
+2025-12-11T15:26:07.607Z  INFO 36818 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Loaded youtube-plugin-1.11.2.jar (16 classes)
+2025-12-11T15:26:07.798Z  INFO 36818 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Loaded lavasrc-plugin-4.3.0.jar (168 classes)
+2025-12-11T15:26:07.822Z  INFO 36818 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Loaded lavasearch-plugin-1.0.0.jar (20 classes)
+2025-12-11T15:26:07.840Z  INFO 36818 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Loaded lavalyrics-plugin-1.0.0.jar (23 classes)
+2025-12-11T15:26:07.949Z  INFO 36818 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Loaded sponsorblock-plugin-3.0.1.jar (90 classes)
+2025-12-11T15:26:08.321Z  INFO 36818 --- [Lavalink] [main] lavalink.server.Launcher                 : Started Launcher in 9.25 seconds (process running for 10.452)
+2025-12-11T15:26:08.464Z  INFO 36818 --- [Lavalink] [main] lavalink.server.Launcher                 : 
+
+[32m       .  [31m _                  _ _       _    [32m__ _ _
+[32m      /\\ [31m| | __ ___   ____ _| (_)_ __ | | __[32m\ \ \ \
+[32m     ( ( )[31m| |/ _` \ \ / / _` | | | '_ \| |/ /[32m \ \ \ \
+[32m      \\/ [31m| | (_| |\ V / (_| | | | | | |   < [32m  ) ) ) )
+[32m       '  [31m|_|\__,_| \_/ \__,_|_|_|_| |_|_|\_\[32m / / / /
+[0m    =========================================[32m/_/_/_/[0m
+
+	Version:        4.0.8
+	Build time:     20.09.2024 20:20:10 UTC
+	Branch          HEAD
+	Commit:         2946608
+	Commit time:    20.09.2024 20:17:58 UTC
+	JVM:            21.0.9
+	Lavaplayer      2.2.2
+
+2025-12-11T15:26:08.489Z  INFO 36818 --- [Lavalink] [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2025-12-11T15:26:09.825Z  WARN 36818 --- [Lavalink] [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2025-12-11T15:26:09.857Z  INFO 36818 --- [Lavalink] [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2025-12-11T15:26:09.858Z  INFO 36818 --- [Lavalink] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1361 ms
+2025-12-11T15:26:10.659Z  INFO 36818 --- [Lavalink] [main] dev.lavalink.youtube.plugin.PluginInfo   : ********************************************
+YOUTUBE-SOURCE VERSION 1.16.0 AVAILABLE
+https://github.com/lavalink-devs/youtube-source/releases/tag/1.16.0
+Update to ensure the YouTube source remains operational!
+********************************************
+2025-12-11T15:26:10.733Z  INFO 36818 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Loading LavaSrc plugin...
+2025-12-11T15:26:10.780Z  INFO 36818 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering Youtube Source audio source manager...
+2025-12-11T15:26:10.815Z  INFO 36818 --- [Lavalink] [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2025-12-11T15:26:11.475Z  INFO 36818 --- [Lavalink] [main] c.d.lavalinkplugin.DuncteBotInjector     : Registering getyarn audio source manager
+2025-12-11T15:26:11.478Z  INFO 36818 --- [Lavalink] [main] c.d.lavalinkplugin.DuncteBotInjector     : Registering clypit audio source manager
+2025-12-11T15:26:11.479Z  INFO 36818 --- [Lavalink] [main] c.d.lavalinkplugin.DuncteBotInjector     : Registering text to speech audio source manager with language en-US
+2025-12-11T15:26:11.480Z  INFO 36818 --- [Lavalink] [main] c.d.lavalinkplugin.DuncteBotInjector     : Registering PornHub audio source manager
+2025-12-11T15:26:11.481Z  INFO 36818 --- [Lavalink] [main] c.d.lavalinkplugin.DuncteBotInjector     : Registering reddit audio source manager
+2025-12-11T15:26:11.483Z  INFO 36818 --- [Lavalink] [main] c.d.lavalinkplugin.DuncteBotInjector     : Registering OC Remix audio source manager
+2025-12-11T15:26:11.486Z  INFO 36818 --- [Lavalink] [main] c.d.lavalinkplugin.DuncteBotInjector     : Registering TikTok audio source manager
+2025-12-11T15:26:11.489Z  INFO 36818 --- [Lavalink] [main] c.d.lavalinkplugin.DuncteBotInjector     : Registering Mixcloud audio source manager
+2025-12-11T15:26:11.493Z  INFO 36818 --- [Lavalink] [main] c.d.lavalinkplugin.DuncteBotInjector     : Registering Soundgasm audio source manager
+2025-12-11T15:26:11.543Z  INFO 36818 --- [Lavalink] [main] d.l.youtube.plugin.YoutubePluginLoader   : YouTube source initialised with clients: TVHTML5_SIMPLY_EMBEDDED_PLAYER, TVHTML5, IOS, ANDROID_MUSIC, ANDROID_VR, WEB, MWEB, WEB_EMBEDDED_PLAYER, WEB_REMIX 
+2025-12-11T15:26:12.029Z  INFO 36818 --- [Lavalink] [main] d.l.youtube.http.YoutubeOauth2Handler    : ==================================================
+2025-12-11T15:26:12.029Z  INFO 36818 --- [Lavalink] [main] d.l.youtube.http.YoutubeOauth2Handler    : !!! DO NOT AUTHORISE WITH YOUR MAIN ACCOUNT, USE A BURNER !!!
+2025-12-11T15:26:12.029Z  INFO 36818 --- [Lavalink] [main] d.l.youtube.http.YoutubeOauth2Handler    : OAUTH INTEGRATION: To give youtube-source access to your account, go to https://www.google.com/device and enter code GXG-TQS-YYDM
+2025-12-11T15:26:12.030Z  INFO 36818 --- [Lavalink] [main] d.l.youtube.http.YoutubeOauth2Handler    : !!! DO NOT AUTHORISE WITH YOUR MAIN ACCOUNT, USE A BURNER !!!
+2025-12-11T15:26:12.030Z  INFO 36818 --- [Lavalink] [main] d.l.youtube.http.YoutubeOauth2Handler    : ==================================================
+2025-12-11T15:26:12.032Z  INFO 36818 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering Spotify audio source manager...
+2025-12-11T15:26:12.033Z  INFO 36818 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering Deezer audio source manager...
+2025-12-11T15:26:12.033Z  INFO 36818 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering Flowery TTS audio source manager...
+2025-12-11T15:26:12.046Z  INFO 36818 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering Spotify search manager...
+2025-12-11T15:26:12.046Z  INFO 36818 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering Deezer search manager...
+2025-12-11T15:26:12.046Z  INFO 36818 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering Youtube search manager...
+2025-12-11T15:26:12.288Z  INFO 36818 --- [Lavalink] [main] l.server.config.KoeConfiguration         : OS: LINUX, Arch: X86_64
+2025-12-11T15:26:12.289Z  INFO 36818 --- [Lavalink] [main] l.server.config.KoeConfiguration         : Enabling JDA-NAS
+2025-12-11T15:26:12.298Z  INFO 36818 --- [Lavalink] [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: loading with filter null
+2025-12-11T15:26:12.310Z  INFO 36818 --- [Lavalink] [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: successfully loaded.
+2025-12-11T15:26:12.318Z  INFO 36818 --- [Lavalink] [main] c.g.t.s.plugin.SponsorBlockPlugin        : Loading SponsorBlock Plugin...
+2025-12-11T15:26:12.356Z  INFO 36818 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering Spotify lyrics manager...
+2025-12-11T15:26:12.357Z  INFO 36818 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering Deezer lyrics manager...
+2025-12-11T15:26:12.358Z  INFO 36818 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering YouTube lyrics manager...
+2025-12-11T15:26:12.399Z  INFO 36818 --- [Lavalink] [main] l.server.metrics.PrometheusMetrics       : Prometheus metrics set up
+2025-12-11T15:26:12.425Z  WARN 36818 --- [Lavalink] [main] l.server.config.SentryConfiguration      : Turning off sentry
+2025-12-11T15:26:12.974Z  INFO 36818 --- [Lavalink] [main] io.undertow                              : starting server: Undertow - 2.3.13.Final
+2025-12-11T15:26:12.986Z  INFO 36818 --- [Lavalink] [main] org.xnio                                 : XNIO version 3.8.8.Final
+2025-12-11T15:26:13.001Z  INFO 36818 --- [Lavalink] [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.8.8.Final
+2025-12-11T15:26:13.381Z  INFO 36818 --- [Lavalink] [main] org.jboss.threads                        : JBoss Threads version 3.5.0.Final
+2025-12-11T15:26:13.444Z  INFO 36818 --- [Lavalink] [main] o.s.b.w.e.undertow.UndertowWebServer     : Undertow started on port 2333 (http) with context path '/'
+2025-12-11T15:26:13.463Z  INFO 36818 --- [Lavalink] [main] lavalink.server.Launcher                 : Started Launcher in 5.133 seconds (process running for 15.593)
+2025-12-11T15:26:13.464Z  INFO 36818 --- [Lavalink] [main] lavalink.server.Launcher                 : Lavalink is ready to accept connections.
+2025-12-11T15:26:28.904Z  INFO 36818 --- [Lavalink] [SpringApplicationShutdownHook] io.undertow                              : stopping server: Undertow - 2.3.13.Final
+2025-12-11T15:26:28.920Z  INFO 36818 --- [Lavalink] [SpringApplicationShutdownHook] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2025-12-11T15:30:15.520Z  INFO 39182 --- [Lavalink] [main] lavalink.server.Launcher                 : Starting Launcher v4.0.8 using Java 21.0.9 with PID 39182 (/workspaces/lavalink-server/Lavalink.jar started by codespace in /workspaces/lavalink-server)
+2025-12-11T15:30:15.533Z  INFO 39182 --- [Lavalink] [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2025-12-11T15:30:17.477Z  INFO 39182 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Found plugin 'DuncteBot-plugin' version 1.7.0
+2025-12-11T15:30:17.478Z  INFO 39182 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Found plugin 'youtube-plugin' version 1.11.2
+2025-12-11T15:30:17.478Z  INFO 39182 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Found plugin 'lavasrc-plugin' version 4.3.0
+2025-12-11T15:30:17.479Z  INFO 39182 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Found plugin 'lavasearch-plugin' version 1.0.0
+2025-12-11T15:30:17.479Z  INFO 39182 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Found plugin 'lavalyrics-plugin' version 1.0.0
+2025-12-11T15:30:17.479Z  INFO 39182 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Found plugin 'sponsorblock-plugin' version 3.0.1
+2025-12-11T15:30:17.496Z  INFO 39182 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Loaded skybot-lavalink-plugin-1.7.0.jar (4 classes)
+2025-12-11T15:30:17.514Z  INFO 39182 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Loaded youtube-plugin-1.11.2.jar (16 classes)
+2025-12-11T15:30:17.682Z  INFO 39182 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Loaded lavasrc-plugin-4.3.0.jar (168 classes)
+2025-12-11T15:30:17.702Z  INFO 39182 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Loaded lavasearch-plugin-1.0.0.jar (20 classes)
+2025-12-11T15:30:17.731Z  INFO 39182 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Loaded lavalyrics-plugin-1.0.0.jar (23 classes)
+2025-12-11T15:30:17.799Z  INFO 39182 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Loaded sponsorblock-plugin-3.0.1.jar (90 classes)
+2025-12-11T15:30:18.176Z  INFO 39182 --- [Lavalink] [main] lavalink.server.Launcher                 : Started Launcher in 3.777 seconds (process running for 4.996)
+2025-12-11T15:30:18.315Z  INFO 39182 --- [Lavalink] [main] lavalink.server.Launcher                 : 
+
+[32m       .  [31m _                  _ _       _    [32m__ _ _
+[32m      /\\ [31m| | __ ___   ____ _| (_)_ __ | | __[32m\ \ \ \
+[32m     ( ( )[31m| |/ _` \ \ / / _` | | | '_ \| |/ /[32m \ \ \ \
+[32m      \\/ [31m| | (_| |\ V / (_| | | | | | |   < [32m  ) ) ) )
+[32m       '  [31m|_|\__,_| \_/ \__,_|_|_|_| |_|_|\_\[32m / / / /
+[0m    =========================================[32m/_/_/_/[0m
+
+	Version:        4.0.8
+	Build time:     20.09.2024 20:20:10 UTC
+	Branch          HEAD
+	Commit:         2946608
+	Commit time:    20.09.2024 20:17:58 UTC
+	JVM:            21.0.9
+	Lavaplayer      2.2.2
+
+2025-12-11T15:30:18.330Z  INFO 39182 --- [Lavalink] [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2025-12-11T15:30:19.969Z  WARN 39182 --- [Lavalink] [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2025-12-11T15:30:20.015Z  INFO 39182 --- [Lavalink] [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2025-12-11T15:30:20.016Z  INFO 39182 --- [Lavalink] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1672 ms
+2025-12-11T15:30:21.424Z  INFO 39182 --- [Lavalink] [main] dev.lavalink.youtube.plugin.PluginInfo   : ********************************************
+YOUTUBE-SOURCE VERSION 1.16.0 AVAILABLE
+https://github.com/lavalink-devs/youtube-source/releases/tag/1.16.0
+Update to ensure the YouTube source remains operational!
+********************************************
+2025-12-11T15:30:21.513Z  INFO 39182 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Loading LavaSrc plugin...
+2025-12-11T15:30:21.545Z  INFO 39182 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering Youtube Source audio source manager...
+2025-12-11T15:30:21.570Z  INFO 39182 --- [Lavalink] [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2025-12-11T15:30:22.112Z  INFO 39182 --- [Lavalink] [main] c.d.lavalinkplugin.DuncteBotInjector     : Registering getyarn audio source manager
+2025-12-11T15:30:22.115Z  INFO 39182 --- [Lavalink] [main] c.d.lavalinkplugin.DuncteBotInjector     : Registering clypit audio source manager
+2025-12-11T15:30:22.117Z  INFO 39182 --- [Lavalink] [main] c.d.lavalinkplugin.DuncteBotInjector     : Registering text to speech audio source manager with language en-US
+2025-12-11T15:30:22.121Z  INFO 39182 --- [Lavalink] [main] c.d.lavalinkplugin.DuncteBotInjector     : Registering PornHub audio source manager
+2025-12-11T15:30:22.122Z  INFO 39182 --- [Lavalink] [main] c.d.lavalinkplugin.DuncteBotInjector     : Registering reddit audio source manager
+2025-12-11T15:30:22.124Z  INFO 39182 --- [Lavalink] [main] c.d.lavalinkplugin.DuncteBotInjector     : Registering OC Remix audio source manager
+2025-12-11T15:30:22.129Z  INFO 39182 --- [Lavalink] [main] c.d.lavalinkplugin.DuncteBotInjector     : Registering TikTok audio source manager
+2025-12-11T15:30:22.132Z  INFO 39182 --- [Lavalink] [main] c.d.lavalinkplugin.DuncteBotInjector     : Registering Mixcloud audio source manager
+2025-12-11T15:30:22.133Z  INFO 39182 --- [Lavalink] [main] c.d.lavalinkplugin.DuncteBotInjector     : Registering Soundgasm audio source manager
+2025-12-11T15:30:22.180Z  INFO 39182 --- [Lavalink] [main] d.l.youtube.plugin.YoutubePluginLoader   : YouTube source initialised with clients: TVHTML5_SIMPLY_EMBEDDED_PLAYER, TVHTML5, IOS, ANDROID_MUSIC, ANDROID_VR, WEB, MWEB, WEB_EMBEDDED_PLAYER, WEB_REMIX 
+2025-12-11T15:30:22.669Z  INFO 39182 --- [Lavalink] [main] d.l.youtube.http.YoutubeOauth2Handler    : ==================================================
+2025-12-11T15:30:22.669Z  INFO 39182 --- [Lavalink] [main] d.l.youtube.http.YoutubeOauth2Handler    : !!! DO NOT AUTHORISE WITH YOUR MAIN ACCOUNT, USE A BURNER !!!
+2025-12-11T15:30:22.669Z  INFO 39182 --- [Lavalink] [main] d.l.youtube.http.YoutubeOauth2Handler    : OAUTH INTEGRATION: To give youtube-source access to your account, go to https://www.google.com/device and enter code HGC-PYY-WRTC
+2025-12-11T15:30:22.670Z  INFO 39182 --- [Lavalink] [main] d.l.youtube.http.YoutubeOauth2Handler    : !!! DO NOT AUTHORISE WITH YOUR MAIN ACCOUNT, USE A BURNER !!!
+2025-12-11T15:30:22.670Z  INFO 39182 --- [Lavalink] [main] d.l.youtube.http.YoutubeOauth2Handler    : ==================================================
+2025-12-11T15:30:22.672Z  INFO 39182 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering Spotify audio source manager...
+2025-12-11T15:30:22.673Z  INFO 39182 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering Deezer audio source manager...
+2025-12-11T15:30:22.673Z  INFO 39182 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering Flowery TTS audio source manager...
+2025-12-11T15:30:22.687Z  INFO 39182 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering Spotify search manager...
+2025-12-11T15:30:22.688Z  INFO 39182 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering Deezer search manager...
+2025-12-11T15:30:22.688Z  INFO 39182 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering Youtube search manager...
+2025-12-11T15:30:22.856Z  INFO 39182 --- [Lavalink] [main] l.server.config.KoeConfiguration         : OS: LINUX, Arch: X86_64
+2025-12-11T15:30:22.857Z  INFO 39182 --- [Lavalink] [main] l.server.config.KoeConfiguration         : Enabling JDA-NAS
+2025-12-11T15:30:22.861Z  INFO 39182 --- [Lavalink] [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: loading with filter null
+2025-12-11T15:30:22.877Z  INFO 39182 --- [Lavalink] [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: successfully loaded.
+2025-12-11T15:30:22.896Z  INFO 39182 --- [Lavalink] [main] c.g.t.s.plugin.SponsorBlockPlugin        : Loading SponsorBlock Plugin...
+2025-12-11T15:30:22.914Z  INFO 39182 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering Spotify lyrics manager...
+2025-12-11T15:30:22.915Z  INFO 39182 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering Deezer lyrics manager...
+2025-12-11T15:30:22.915Z  INFO 39182 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Registering YouTube lyrics manager...
+2025-12-11T15:30:22.955Z  INFO 39182 --- [Lavalink] [main] l.server.metrics.PrometheusMetrics       : Prometheus metrics set up
+2025-12-11T15:30:23.000Z  WARN 39182 --- [Lavalink] [main] l.server.config.SentryConfiguration      : Turning off sentry
+2025-12-11T15:30:23.631Z  INFO 39182 --- [Lavalink] [main] io.undertow                              : starting server: Undertow - 2.3.13.Final
+2025-12-11T15:30:23.649Z  INFO 39182 --- [Lavalink] [main] org.xnio                                 : XNIO version 3.8.8.Final
+2025-12-11T15:30:23.664Z  INFO 39182 --- [Lavalink] [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.8.8.Final
+2025-12-11T15:30:23.835Z  INFO 39182 --- [Lavalink] [main] org.jboss.threads                        : JBoss Threads version 3.5.0.Final
+2025-12-11T15:30:23.915Z  INFO 39182 --- [Lavalink] [main] o.s.b.w.e.undertow.UndertowWebServer     : Undertow started on port 2333 (http) with context path '/'
+2025-12-11T15:30:23.924Z  INFO 39182 --- [Lavalink] [main] lavalink.server.Launcher                 : Started Launcher in 5.734 seconds (process running for 10.744)
+2025-12-11T15:30:23.925Z  INFO 39182 --- [Lavalink] [main] lavalink.server.Launcher                 : Lavalink is ready to accept connections.
+2025-12-11T15:31:20.086Z  INFO 39182 --- [Lavalink] [SpringApplicationShutdownHook] io.undertow                              : stopping server: Undertow - 2.3.13.Final
+2025-12-11T15:31:20.095Z  INFO 39182 --- [Lavalink] [SpringApplicationShutdownHook] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.

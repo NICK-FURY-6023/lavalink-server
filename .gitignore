@@ -1,0 +1,5 @@
+
+# Logs
+*.log
+logs/
+lavalink.log

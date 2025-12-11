@@ -92,24 +92,31 @@ plugins:
       - deezer
       - yandexMusic
   lavasrc:
+    # Search Provider Priority Order
+    # Priority 1: ISRC Code (Exact Match)
+    # Priority 2: Song Name Search
+    # Priority 3: Platform-specific Search
     providers:
-      - "scsearch:%QUERY%"
-      #- "dzisrc:%ISRC%"
-      #- "dzsearch:%QUERY%"
-      - "ytsearch:\"%ISRC%\""
-      - "ytsearch:%QUERY%"
+      - "ytsearch:\"%ISRC%\""           # YouTube ISRC (exact match)
+      - "jssearch:\"%ISRC%\""           # JioSaavn ISRC (Indian content)
+      - "tdsearch:\"%ISRC%\""           # Tidal ISRC (Hi-Fi quality)
+      #- "dzisrc:%ISRC%"                # Deezer ISRC (requires auth)
+      - "ytsearch:%QUERY%"              # YouTube Name Search
+      - "jssearch:%QUERY%"              # JioSaavn Name Search (Bollywood/Regional)
+      - "scsearch:%QUERY%"              # SoundCloud Name Search
+      #- "dzsearch:%QUERY%"             # Deezer Name Search (requires auth)
     sources:
-      spotify: true # Enable Spotify source
-      applemusic: false # Enable Apple Music source
-      deezer: false # Enable Deezer source
-      yandexmusic: false # Enable Yandex Music source
-      flowerytts: false # Enable Flowery TTS source
-      youtube: true # Enable YouTube search source (https://github.com/topi314/LavaSearch)
-      vkmusic: false # Enable Vk Music source
-      tidal: false # Enable Tidal source
-      qobuz: false # Enabled qobuz source
-      ytdlp: false # Enable yt-dlp source
-      jiosaavn: false # Enable JioSaavn source
+      spotify: true      # Enable Spotify source - Global music
+      applemusic: false  # Enable Apple Music source - iOS ecosystem (requires token)
+      deezer: false      # Enable Deezer source - European content (requires masterDecryptionKey)
+      yandexmusic: true  # Enable Yandex Music source - Russian/CIS content (no auth required)
+      flowerytts: false  # Enable Flowery TTS source - Text-to-speech
+      youtube: true      # Enable YouTube search source (https://github.com/topi314/LavaSearch)
+      vkmusic: false     # Enable Vk Music source - Russian social music
+      tidal: true        # Enable Tidal source - Hi-Fi lossless quality (up to 9216kbps MQA)
+      qobuz: false       # Enable Qobuz source - Hi-Res audio (requires token)
+      ytdlp: false       # Enable yt-dlp source - Alternative YouTube downloader
+      jiosaavn: true     # Enable JioSaavn source - Indian/Bollywood/Regional music (no auth required)
     lyrics-sources:
       spotify: false # Enable Spotify lyrics source
       deezer: false # Enable Deezer lyrics source
@@ -119,8 +126,8 @@ plugins:
       lrcLib: true # Enable LRC Library lyrics source (https://lrclib.net)
     spotify:
       # clientId & clientSecret are required for using spsearch
-     clientId: "8db85e4cfce8433bb7f80ce366b3373d"
-     clientSecret: "808decfe6312499699375bd4f9aea6df"
+      clientId: "8db85e4cfce8433bb7f80ce366b3373d"
+      clientSecret: "808decfe6312499699375bd4f9aea6df"
       # spDc: "your sp dc cookie" # the sp dc cookie used for accessing the spotify lyrics api
       countryCode: "US" # the country code you want to use for filtering the artists top tracks. See https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
       playlistLoadLimit: 6 # The number of pages at 100 tracks each
@@ -145,8 +152,16 @@ plugins:
       masterDecryptionKey: "your master decryption key" # the master key used for decrypting the deezer tracks. (yes this is not here you need to get it from somewhere else)
       arl: "your deezer arl" # the arl cookie used for accessing the deezer api this is not optional anymore
       formats: [ "FLAC", "MP3_320", "MP3_256", "MP3_128", "MP3_64", "AAC_64" ] # the formats you want to use for the deezer tracks. "FLAC", "MP3_320", "MP3_256" & "AAC_64" are only available for premium users and require a valid arl
+    # ========================================
+    # YANDEX MUSIC CONFIGURATION (Russian/CIS Content)
+    # ========================================
+    # Search: "ymsearch:Russian Song"
+    # Direct: "https://music.yandex.ru/album/..."
+    # Quality: 320kbps
+    # Best for: Russian, Ukrainian, Kazakh music
     yandexmusic:
-      accessToken: "your access token" # the token used for accessing the yandex music api. See https://github.com/topi314/LavaSrc#yandex-music
+      # Optional: Better access with Yandex.Music subscription
+      # accessToken: "your access token" # the token used for accessing the yandex music api. See https://github.com/topi314/LavaSrc#yandex-music
       playlistLoadLimit: 1 # The number of pages at 100 tracks each
       albumLoadLimit: 1 # The number of pages at 50 tracks each
       artistLoadLimit: 1 # The number of pages at 10 tracks each
@@ -168,10 +183,18 @@ plugins:
       playlistLoadLimit: 1 # The number of pages at 50 tracks each
       artistLoadLimit: 1 # The number of pages at 10 tracks each
       recommendationsLoadLimit: 10 # Number of tracks
+    # ========================================
+    # TIDAL CONFIGURATION (Hi-Fi Lossless)
+    # ========================================
+    # Search: "tdsearch:Blinding Lights"
+    # Direct: "https://tidal.com/browse/track/..."
+    # Quality: Up to 9216kbps MQA / 1411kbps FLAC
     tidal:
-      countryCode: "US" # the country code for accessing region-specific content on Tidal (ISO 3166-1 alpha-2).
+      countryCode: "US" # the country code for accessing region-specific content on Tidal (ISO 3166-1 alpha-2). US, GB, DE, IN, etc.
       searchLimit: 6 # How many search results should be returned
-      token: "your tidal token" # the token used for accessing the tidal api. See https://github.com/topi314/LavaSrc#tidal
+      # Optional: Hi-Fi Quality Access (requires active Tidal subscription)
+      # token: "your tidal token" # the token used for accessing the tidal api. See https://github.com/topi314/LavaSrc#tidal
+      # quality: "HIGH" # HIGH, LOSSLESS, HI_RES
     qobuz:
       userOauthToken : "your user oauth token" # This token is needed for authorization in the api. Guide: https://github.com/topi314/LavaSrc#qobuz
       #appId : optional (Only pass it when you are using an old userOauthToken)
@@ -181,9 +204,16 @@ plugins:
       searchLimit: 10 # How many search results should be returned
 #      customLoadArgs: ["-q", "--no-warnings", "--flat-playlist", "--skip-download", "-J"] # Custom arguments to pass to yt-dlp
 #      customPlaybackArgs: ["-q", "--no-warnings", "-f", "bestaudio", "-J"] # Custom arguments for yt-dlp
+    # ========================================
+    # JIOSAAVN CONFIGURATION (Indian/Bollywood/Regional)
+    # ========================================
+    # Search: "jssearch:Kesariya" or "jssearch:Tum Hi Ho"
+    # Direct: "https://www.jiosaavn.com/song/kesariya/..."
+    # Quality: 320kbps AAC
+    # Languages: Hindi, Punjabi, Tamil, Telugu, Bengali, Marathi, Kannada, etc.
     jiosaavn:
       decryption: # The decryption configuration for the JioSaavn tracks
-        secretKey: "??" # The required secret key used for decryption (Find your own secret key)
+        secretKey: "38346591" # The secret key used for decryption (this is the known public key)
 #        algorithm: "DES" # The algorithm used for decryption (Default "DES")
 #        transformation: "DES/ECB/PKCS5Padding" # The transformation used for decryption (Default "DES/ECB/PKCS5Padding")
 #      proxy: # If defined, JioSaavn HTTP requests will be proxied through here. JioSaavn uses region blocking

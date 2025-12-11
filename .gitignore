@@ -3,3 +3,7 @@
 *.log
 logs/
 lavalink.log
+monitor-bot/.env
+monitor-bot/__pycache__/
+monitor-bot/message_id.txt
+monitor-bot/monitor_config.json

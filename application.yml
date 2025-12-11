@@ -130,23 +130,23 @@ plugins:
       
     sources:
       spotify: true          # ✅ Spotify
-      applemusic: true       # ✅ Apple Music
+      applemusic: false      # ❌ Apple Music (needs valid token)
       deezer: true           # ✅ Deezer
-      yandexmusic: true      # ✅ Yandex Music
+      yandexmusic: false     # ❌ Yandex Music (needs token)
       flowerytts: true       # ✅ Flowery TTS
       youtube: true          # ✅ YouTube (LavaSearch)
-      vkmusic: true          # ✅ VK Music
-      tidal: true            # ✅ Tidal
-      qobuz: false           # ❌ Qobuz (needs premium subscription)
-      ytdlp: true            # ✅ yt-dlp (extra sources)
+      vkmusic: false         # ❌ VK Music (needs token)
+      tidal: false           # ❌ Tidal (needs token)
+      qobuz: false           # ❌ Qobuz (needs subscription)
+      ytdlp: false           # ❌ yt-dlp (optional)
       jiosaavn: true         # ✅ JioSaavn (Indian music)
       
     lyrics-sources:
       spotify: true          # ✅ Spotify lyrics
       deezer: true           # ✅ Deezer lyrics
       youtube: true          # ✅ YouTube lyrics
-      yandexmusic: true      # ✅ Yandex lyrics
-      vkmusic: true          # ✅ VK lyrics
+      yandexmusic: false     # ❌ Yandex lyrics (needs token)
+      vkmusic: false         # ❌ VK lyrics (needs token)
       lrcLib: true           # ✅ LRC Library (https://lrclib.net)
 
     # ==========================================================================
@@ -268,9 +268,6 @@ plugins:
       mixcloud: true     # Mixcloud DJ mixes
       soundgasm: true    # soundgasm.net
       pixeldrain: true   # pixeldrain.com
-      mixcloud: true # mixcloud.com
-      soundgasm: true # soundgasm.net
-      pixeldrain: true # pixeldrain.com
 lavalink:
   plugins:
     # ==========================================================================

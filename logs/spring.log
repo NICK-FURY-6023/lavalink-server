@@ -592,3 +592,4 @@ Identify and stop the process that's listening on port 2333 or configure this ap
 2025-12-11T15:50:49.656Z  INFO 47965 --- [Lavalink] [XNIO-1 task-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-12-11T15:50:49.657Z  INFO 47965 --- [Lavalink] [XNIO-1 task-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2025-12-11T15:50:49.745Z  INFO 47965 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /version, client=0:0:0:0:0:0:0:1
+2025-12-11T15:55:17.598Z  INFO 47965 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/stats, client=0:0:0:0:0:0:0:1

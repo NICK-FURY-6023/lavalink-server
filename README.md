@@ -237,7 +237,7 @@ Use these search prefixes in your Discord bot:
 |----------|----------------|---------|
 | YouTube | `ytsearch:` | `ytsearch:despacito` |
 | Spotify | `spsearch:` | `spsearch:blinding lights` |
-| Apple Music | `amsearch:` | `amsearch:driver license` |
+| Apple Music | `amsearch:` | `amsearch:drivers license` |
 | Deezer | `dzsearch:` | `dzsearch:shape of you` |
 | JioSaavn | `jssearch:` | `jssearch:kesariya` or `jssearch:tum hi ho` |
 | Tidal | `tdsearch:` | `tdsearch:starboy` |

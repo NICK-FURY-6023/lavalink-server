@@ -211,9 +211,10 @@ plugins:
     # Direct: "https://www.jiosaavn.com/song/kesariya/..."
     # Quality: 320kbps AAC
     # Languages: Hindi, Punjabi, Tamil, Telugu, Bengali, Marathi, Kannada, etc.
+    # Note: The decryption key below is a well-known public key used by JioSaavn's API
     jiosaavn:
       decryption: # The decryption configuration for the JioSaavn tracks
-        secretKey: "38346591" # The secret key used for decryption (this is the known public key)
+        secretKey: "38346591" # Well-known public decryption key for JioSaavn API (not a secret)
 #        algorithm: "DES" # The algorithm used for decryption (Default "DES")
 #        transformation: "DES/ECB/PKCS5Padding" # The transformation used for decryption (Default "DES/ECB/PKCS5Padding")
 #      proxy: # If defined, JioSaavn HTTP requests will be proxied through here. JioSaavn uses region blocking

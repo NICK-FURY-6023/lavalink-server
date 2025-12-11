@@ -205,19 +205,45 @@
 
 - YandexMusic: 
     ### https://github.com/topi314/LavaSrc#yandex-music
-    - accessToken: "your access token"
+    - accessToken: "your access token" (optional - works without for basic access)
+    - Best for Russian/CIS region content
 
 - VkMusic: 
     ### https://github.com/topi314/LavaSrc#vk-music
     - userToken: "your user token"
 
-- Tidal: 
+- Tidal (Hi-Fi Lossless Quality): 
     ### https://github.com/topi314/LavaSrc#tidal
-    - token: "your tidal token"
+    - countryCode: "US" (required - use your region code: US, IN, GB, DE, etc.)
+    - token: "your tidal token" (optional - for Hi-Fi quality access)
+    - Search with: `tdsearch:song name`
+    - Supports: Standard (320kbps AAC), Hi-Fi (1411kbps FLAC), Master (MQA)
+
+- JioSaavn (Indian/Bollywood/Regional Music): 
+    ### https://github.com/topi314/LavaSrc#jiosaavn
+    - No authentication required - uses public API
+    - Search with: `jssearch:song name` (e.g., `jssearch:Kesariya`, `jssearch:Tum Hi Ho`)
+    - Supports: Hindi, Punjabi, Tamil, Telugu, Bengali, and more regional languages
+    - Quality: 320kbps AAC
+    - Note: May require proxy outside India due to region blocking
 
 - Qobuz: 
     ### https://github.com/topi314/LavaSrc#qobuz
     - token: "your user oauth token"
+
+### Search Syntax Examples
+
+| Platform | Search Command | Example |
+|----------|---------------|---------|
+| YouTube | `ytsearch:` | `ytsearch:despacito` |
+| Spotify | `spsearch:` | `spsearch:blinding lights` |
+| JioSaavn | `jssearch:` | `jssearch:kesariya` |
+| Tidal | `tdsearch:` | `tdsearch:starboy` |
+| SoundCloud | `scsearch:` | `scsearch:indie song` |
+| Yandex | `ymsearch:` | `ymsearch:russian song` |
+| Deezer | `dzsearch:` | `dzsearch:shape of you` |
+| Apple Music | `amsearch:` | `amsearch:drivers license` |
+
 </details>
 
 ## ☕ Donate

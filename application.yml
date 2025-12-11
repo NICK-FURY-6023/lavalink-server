@@ -93,23 +93,28 @@ plugins:
       - yandexMusic
   lavasrc:
     providers:
-      - "scsearch:%QUERY%"
-      #- "dzisrc:%ISRC%"
-      #- "dzsearch:%QUERY%"
-      - "ytsearch:\"%ISRC%\""
-      - "ytsearch:%QUERY%"
+      # Priority order for track resolution (ISRC matching first, then name search)
+      - "ytsearch:\"%ISRC%\""           # YouTube ISRC
+      - "jssearch:\"%ISRC%\""           # JioSaavn ISRC (Indian/Bollywood)
+      - "tdsearch:\"%ISRC%\""           # Tidal ISRC (Hi-Fi quality)
+      - "ytsearch:%QUERY%"              # YouTube Name search
+      - "jssearch:%QUERY%"              # JioSaavn Name search (Indian/Bollywood)
+      - "tdsearch:%QUERY%"              # Tidal Name search (Hi-Fi quality)
+      - "scsearch:%QUERY%"              # SoundCloud Name search
+      #- "dzisrc:%ISRC%"                # Deezer ISRC (requires authentication)
+      #- "dzsearch:%QUERY%"             # Deezer Name search (requires authentication)
     sources:
       spotify: true # Enable Spotify source
       applemusic: false # Enable Apple Music source
       deezer: false # Enable Deezer source
-      yandexmusic: false # Enable Yandex Music source
+      yandexmusic: true # Enable Yandex Music source (Russian/CIS content)
       flowerytts: false # Enable Flowery TTS source
       youtube: true # Enable YouTube search source (https://github.com/topi314/LavaSearch)
       vkmusic: false # Enable Vk Music source
-      tidal: false # Enable Tidal source
+      tidal: true # Enable Tidal source (Hi-Fi lossless quality)
       qobuz: false # Enabled qobuz source
       ytdlp: false # Enable yt-dlp source
-      jiosaavn: false # Enable JioSaavn source
+      jiosaavn: true # Enable JioSaavn source (Indian/Bollywood/Regional content)
     lyrics-sources:
       spotify: false # Enable Spotify lyrics source
       deezer: false # Enable Deezer lyrics source
@@ -169,9 +174,12 @@ plugins:
       artistLoadLimit: 1 # The number of pages at 10 tracks each
       recommendationsLoadLimit: 10 # Number of tracks
     tidal:
-      countryCode: "US" # the country code for accessing region-specific content on Tidal (ISO 3166-1 alpha-2).
+      countryCode: "US" # the country code for accessing region-specific content on Tidal (ISO 3166-1 alpha-2). Options: US, IN, GB, DE, etc.
       searchLimit: 6 # How many search results should be returned
-      token: "your tidal token" # the token used for accessing the tidal api. See https://github.com/topi314/LavaSrc#tidal
+      # Optional: For Hi-Fi quality access with Tidal subscription
+      # token: "your tidal token" # the token used for accessing the tidal api. See https://github.com/topi314/LavaSrc#tidal
+      # email: "your-tidal-email@example.com" # Tidal account email (alternative to token)
+      # password: "your-tidal-password" # Tidal account password (alternative to token)
     qobuz:
       userOauthToken : "your user oauth token" # This token is needed for authorization in the api. Guide: https://github.com/topi314/LavaSrc#qobuz
       #appId : optional (Only pass it when you are using an old userOauthToken)
@@ -182,8 +190,12 @@ plugins:
 #      customLoadArgs: ["-q", "--no-warnings", "--flat-playlist", "--skip-download", "-J"] # Custom arguments to pass to yt-dlp
 #      customPlaybackArgs: ["-q", "--no-warnings", "-f", "bestaudio", "-J"] # Custom arguments for yt-dlp
     jiosaavn:
+      # JioSaavn Configuration for Indian/Bollywood/Regional Music
+      # Search with: jssearch:Kesariya, jssearch:Tum Hi Ho, etc.
+      # Supports: Hindi, Punjabi, Tamil, Telugu, Bengali, and more
+      # Note: JioSaavn uses region blocking - proxy may be needed outside India
       decryption: # The decryption configuration for the JioSaavn tracks
-        secretKey: "??" # The required secret key used for decryption (Find your own secret key)
+        secretKey: "38346591" # The DES decryption key used by JioSaavn API (publicly documented)
 #        algorithm: "DES" # The algorithm used for decryption (Default "DES")
 #        transformation: "DES/ECB/PKCS5Padding" # The transformation used for decryption (Default "DES/ECB/PKCS5Padding")
 #      proxy: # If defined, JioSaavn HTTP requests will be proxied through here. JioSaavn uses region blocking

@@ -2872,3 +2872,123 @@ java.io.IOException: Invalid status code for oauth2 token fetch: 400
 	at dev.lavalink.youtube.http.YoutubeOauth2Handler.lambda$initializeAccessToken$0(YoutubeOauth2Handler.java:107) ~[na:na]
 	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
 
+2025-12-11T16:34:36.575Z ERROR 47965 --- [Lavalink] [youtube-source-token-poller] d.l.youtube.http.YoutubeOauth2Handler    : Failed to fetch OAuth2 token response
+
+java.io.IOException: Invalid status code for oauth2 token fetch: 400
+	at com.sedmelluq.discord.lavaplayer.tools.io.HttpClientTools.assertSuccessWithContent(HttpClientTools.java:154) ~[lavaplayer-2.2.2.jar!/:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.pollForToken(YoutubeOauth2Handler.java:154) ~[na:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.lambda$initializeAccessToken$0(YoutubeOauth2Handler.java:107) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-12-11T16:34:41.825Z ERROR 47965 --- [Lavalink] [youtube-source-token-poller] d.l.youtube.http.YoutubeOauth2Handler    : Failed to fetch OAuth2 token response
+
+java.io.IOException: Invalid status code for oauth2 token fetch: 400
+	at com.sedmelluq.discord.lavaplayer.tools.io.HttpClientTools.assertSuccessWithContent(HttpClientTools.java:154) ~[lavaplayer-2.2.2.jar!/:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.pollForToken(YoutubeOauth2Handler.java:154) ~[na:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.lambda$initializeAccessToken$0(YoutubeOauth2Handler.java:107) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-12-11T16:34:42.012Z ERROR 47965 --- [Lavalink] [youtube-source-token-poller] d.l.youtube.http.YoutubeOauth2Handler    : Failed to fetch OAuth2 token response
+
+java.io.IOException: Invalid status code for oauth2 token fetch: 400
+	at com.sedmelluq.discord.lavaplayer.tools.io.HttpClientTools.assertSuccessWithContent(HttpClientTools.java:154) ~[lavaplayer-2.2.2.jar!/:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.pollForToken(YoutubeOauth2Handler.java:154) ~[na:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.lambda$initializeAccessToken$0(YoutubeOauth2Handler.java:107) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-12-11T16:34:47.255Z ERROR 47965 --- [Lavalink] [youtube-source-token-poller] d.l.youtube.http.YoutubeOauth2Handler    : Failed to fetch OAuth2 token response
+
+java.io.IOException: Invalid status code for oauth2 token fetch: 400
+	at com.sedmelluq.discord.lavaplayer.tools.io.HttpClientTools.assertSuccessWithContent(HttpClientTools.java:154) ~[lavaplayer-2.2.2.jar!/:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.pollForToken(YoutubeOauth2Handler.java:154) ~[na:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.lambda$initializeAccessToken$0(YoutubeOauth2Handler.java:107) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-12-11T16:34:52.499Z ERROR 47965 --- [Lavalink] [youtube-source-token-poller] d.l.youtube.http.YoutubeOauth2Handler    : Failed to fetch OAuth2 token response
+
+java.io.IOException: Invalid status code for oauth2 token fetch: 400
+	at com.sedmelluq.discord.lavaplayer.tools.io.HttpClientTools.assertSuccessWithContent(HttpClientTools.java:154) ~[lavaplayer-2.2.2.jar!/:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.pollForToken(YoutubeOauth2Handler.java:154) ~[na:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.lambda$initializeAccessToken$0(YoutubeOauth2Handler.java:107) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-12-11T16:34:52.681Z ERROR 47965 --- [Lavalink] [youtube-source-token-poller] d.l.youtube.http.YoutubeOauth2Handler    : Failed to fetch OAuth2 token response
+
+java.io.IOException: Invalid status code for oauth2 token fetch: 400
+	at com.sedmelluq.discord.lavaplayer.tools.io.HttpClientTools.assertSuccessWithContent(HttpClientTools.java:154) ~[lavaplayer-2.2.2.jar!/:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.pollForToken(YoutubeOauth2Handler.java:154) ~[na:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.lambda$initializeAccessToken$0(YoutubeOauth2Handler.java:107) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-12-11T16:34:57.939Z ERROR 47965 --- [Lavalink] [youtube-source-token-poller] d.l.youtube.http.YoutubeOauth2Handler    : Failed to fetch OAuth2 token response
+
+java.io.IOException: Invalid status code for oauth2 token fetch: 400
+	at com.sedmelluq.discord.lavaplayer.tools.io.HttpClientTools.assertSuccessWithContent(HttpClientTools.java:154) ~[lavaplayer-2.2.2.jar!/:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.pollForToken(YoutubeOauth2Handler.java:154) ~[na:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.lambda$initializeAccessToken$0(YoutubeOauth2Handler.java:107) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-12-11T16:35:03.185Z ERROR 47965 --- [Lavalink] [youtube-source-token-poller] d.l.youtube.http.YoutubeOauth2Handler    : Failed to fetch OAuth2 token response
+
+java.io.IOException: Invalid status code for oauth2 token fetch: 400
+	at com.sedmelluq.discord.lavaplayer.tools.io.HttpClientTools.assertSuccessWithContent(HttpClientTools.java:154) ~[lavaplayer-2.2.2.jar!/:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.pollForToken(YoutubeOauth2Handler.java:154) ~[na:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.lambda$initializeAccessToken$0(YoutubeOauth2Handler.java:107) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-12-11T16:35:03.374Z ERROR 47965 --- [Lavalink] [youtube-source-token-poller] d.l.youtube.http.YoutubeOauth2Handler    : Failed to fetch OAuth2 token response
+
+java.io.IOException: Invalid status code for oauth2 token fetch: 400
+	at com.sedmelluq.discord.lavaplayer.tools.io.HttpClientTools.assertSuccessWithContent(HttpClientTools.java:154) ~[lavaplayer-2.2.2.jar!/:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.pollForToken(YoutubeOauth2Handler.java:154) ~[na:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.lambda$initializeAccessToken$0(YoutubeOauth2Handler.java:107) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-12-11T16:35:08.623Z ERROR 47965 --- [Lavalink] [youtube-source-token-poller] d.l.youtube.http.YoutubeOauth2Handler    : Failed to fetch OAuth2 token response
+
+java.io.IOException: Invalid status code for oauth2 token fetch: 400
+	at com.sedmelluq.discord.lavaplayer.tools.io.HttpClientTools.assertSuccessWithContent(HttpClientTools.java:154) ~[lavaplayer-2.2.2.jar!/:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.pollForToken(YoutubeOauth2Handler.java:154) ~[na:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.lambda$initializeAccessToken$0(YoutubeOauth2Handler.java:107) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-12-11T16:35:13.887Z ERROR 47965 --- [Lavalink] [youtube-source-token-poller] d.l.youtube.http.YoutubeOauth2Handler    : Failed to fetch OAuth2 token response
+
+java.io.IOException: Invalid status code for oauth2 token fetch: 400
+	at com.sedmelluq.discord.lavaplayer.tools.io.HttpClientTools.assertSuccessWithContent(HttpClientTools.java:154) ~[lavaplayer-2.2.2.jar!/:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.pollForToken(YoutubeOauth2Handler.java:154) ~[na:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.lambda$initializeAccessToken$0(YoutubeOauth2Handler.java:107) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-12-11T16:35:19.133Z ERROR 47965 --- [Lavalink] [youtube-source-token-poller] d.l.youtube.http.YoutubeOauth2Handler    : Failed to fetch OAuth2 token response
+
+java.io.IOException: Invalid status code for oauth2 token fetch: 400
+	at com.sedmelluq.discord.lavaplayer.tools.io.HttpClientTools.assertSuccessWithContent(HttpClientTools.java:154) ~[lavaplayer-2.2.2.jar!/:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.pollForToken(YoutubeOauth2Handler.java:154) ~[na:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.lambda$initializeAccessToken$0(YoutubeOauth2Handler.java:107) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-12-11T16:35:19.317Z ERROR 47965 --- [Lavalink] [youtube-source-token-poller] d.l.youtube.http.YoutubeOauth2Handler    : Failed to fetch OAuth2 token response
+
+java.io.IOException: Invalid status code for oauth2 token fetch: 400
+	at com.sedmelluq.discord.lavaplayer.tools.io.HttpClientTools.assertSuccessWithContent(HttpClientTools.java:154) ~[lavaplayer-2.2.2.jar!/:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.pollForToken(YoutubeOauth2Handler.java:154) ~[na:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.lambda$initializeAccessToken$0(YoutubeOauth2Handler.java:107) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-12-11T16:35:19.513Z ERROR 47965 --- [Lavalink] [youtube-source-token-poller] d.l.youtube.http.YoutubeOauth2Handler    : Failed to fetch OAuth2 token response
+
+java.io.IOException: Invalid status code for oauth2 token fetch: 400
+	at com.sedmelluq.discord.lavaplayer.tools.io.HttpClientTools.assertSuccessWithContent(HttpClientTools.java:154) ~[lavaplayer-2.2.2.jar!/:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.pollForToken(YoutubeOauth2Handler.java:154) ~[na:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.lambda$initializeAccessToken$0(YoutubeOauth2Handler.java:107) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-12-11T16:35:24.763Z ERROR 47965 --- [Lavalink] [youtube-source-token-poller] d.l.youtube.http.YoutubeOauth2Handler    : Failed to fetch OAuth2 token response
+
+java.io.IOException: Invalid status code for oauth2 token fetch: 400
+	at com.sedmelluq.discord.lavaplayer.tools.io.HttpClientTools.assertSuccessWithContent(HttpClientTools.java:154) ~[lavaplayer-2.2.2.jar!/:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.pollForToken(YoutubeOauth2Handler.java:154) ~[na:na]
+	at dev.lavalink.youtube.http.YoutubeOauth2Handler.lambda$initializeAccessToken$0(YoutubeOauth2Handler.java:107) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+

@@ -1,0 +1,48 @@
+# ==============================================================================
+# Cipher Server Dockerfile
+# YouTube Remote Cipher Resolver
+# ==============================================================================
+
+FROM node:20-alpine
+
+LABEL maintainer="lavalink-server"
+LABEL description="YouTube Cipher Server for Lavalink"
+
+# Install dependencies
+RUN apk add --no-cache \
+    curl \
+    ca-certificates \
+    && rm -rf /var/cache/apk/*
+
+WORKDIR /app
+
+# Create package.json
+RUN echo '{ \
+  "name": "lavalink-cipher-server", \
+  "version": "1.0.0", \
+  "main": "server.js", \
+  "dependencies": { \
+    "express": "^4.18.2", \
+    "node-fetch": "^2.7.0" \
+  } \
+}' > package.json
+
+# Install npm dependencies
+RUN npm install --production
+
+# Copy server code
+COPY cipher-server.js /app/server.js
+
+# Environment variables
+ENV PORT=8001 \
+    PASSWORD=SatzzDev
+
+# Expose port
+EXPOSE ${PORT}
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+    CMD curl -f http://localhost:${PORT}/health || exit 1
+
+# Run server
+CMD ["node", "server.js"]

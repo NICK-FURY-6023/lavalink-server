@@ -1,0 +1,298 @@
+# ==============================================================================
+# Docker Swarm Deployment Configuration
+# Production Lavalink Cluster
+# ==============================================================================
+
+version: "3.8"
+
+networks:
+  lavalink-overlay:
+    driver: overlay
+    attachable: true
+    driver_opts:
+      encrypted: "true"
+
+volumes:
+  lavalink-plugins:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+
+configs:
+  haproxy-config:
+    file: ./proxy/haproxy.cfg
+  prometheus-config:
+    file: ./monitoring/prometheus.yml
+
+secrets:
+  lavalink-password:
+    external: true
+  spotify-credentials:
+    external: true
+  youtube-token:
+    external: true
+
+services:
+  # ============================================================================
+  # LAVALINK NODE 1 - SINGAPORE
+  # ============================================================================
+  lavalink-node1:
+    image: ghcr.io/lavalink-devs/lavalink:4
+    networks:
+      - lavalink-overlay
+    volumes:
+      - ./cluster/node1.yml:/opt/Lavalink/application.yml:ro
+      - lavalink-plugins:/opt/Lavalink/plugins
+    secrets:
+      - lavalink-password
+      - spotify-credentials
+      - youtube-token
+    environment:
+      - _JAVA_OPTIONS=-Xmx4G -Xms2G -XX:+UseG1GC
+      - SERVER_PORT=2333
+      - LAVALINK_PASSWORD_FILE=/run/secrets/lavalink-password
+    deploy:
+      mode: replicated
+      replicas: 2
+      placement:
+        constraints:
+          - node.labels.region == singapore
+      update_config:
+        parallelism: 1
+        delay: 30s
+        failure_action: rollback
+        order: start-first
+      rollback_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 5
+        window: 120s
+      resources:
+        limits:
+          cpus: '4'
+          memory: 6G
+        reservations:
+          cpus: '1'
+          memory: 2G
+      labels:
+        - "com.lavalink.region=singapore"
+        - "com.lavalink.role=primary"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:2333/version"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # ============================================================================
+  # LAVALINK NODE 2 - GERMANY
+  # ============================================================================
+  lavalink-node2:
+    image: ghcr.io/lavalink-devs/lavalink:4
+    networks:
+      - lavalink-overlay
+    volumes:
+      - ./cluster/node2.yml:/opt/Lavalink/application.yml:ro
+      - lavalink-plugins:/opt/Lavalink/plugins
+    secrets:
+      - lavalink-password
+      - spotify-credentials
+      - youtube-token
+    environment:
+      - _JAVA_OPTIONS=-Xmx4G -Xms2G -XX:+UseG1GC
+      - SERVER_PORT=2334
+      - LAVALINK_PASSWORD_FILE=/run/secrets/lavalink-password
+    deploy:
+      mode: replicated
+      replicas: 2
+      placement:
+        constraints:
+          - node.labels.region == germany
+      update_config:
+        parallelism: 1
+        delay: 30s
+        failure_action: rollback
+        order: start-first
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 5
+        window: 120s
+      resources:
+        limits:
+          cpus: '4'
+          memory: 6G
+        reservations:
+          cpus: '1'
+          memory: 2G
+      labels:
+        - "com.lavalink.region=germany"
+        - "com.lavalink.role=primary"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:2334/version"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # ============================================================================
+  # LAVALINK NODE 3 - US-EAST
+  # ============================================================================
+  lavalink-node3:
+    image: ghcr.io/lavalink-devs/lavalink:4
+    networks:
+      - lavalink-overlay
+    volumes:
+      - ./cluster/node3.yml:/opt/Lavalink/application.yml:ro
+      - lavalink-plugins:/opt/Lavalink/plugins
+    secrets:
+      - lavalink-password
+      - spotify-credentials
+      - youtube-token
+    environment:
+      - _JAVA_OPTIONS=-Xmx4G -Xms2G -XX:+UseG1GC
+      - SERVER_PORT=2335
+      - LAVALINK_PASSWORD_FILE=/run/secrets/lavalink-password
+    deploy:
+      mode: replicated
+      replicas: 2
+      placement:
+        constraints:
+          - node.labels.region == us-east
+      update_config:
+        parallelism: 1
+        delay: 30s
+        failure_action: rollback
+        order: start-first
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 5
+        window: 120s
+      resources:
+        limits:
+          cpus: '4'
+          memory: 6G
+        reservations:
+          cpus: '1'
+          memory: 2G
+      labels:
+        - "com.lavalink.region=us-east"
+        - "com.lavalink.role=primary"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:2335/version"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # ============================================================================
+  # HAPROXY - LOAD BALANCER
+  # ============================================================================
+  haproxy:
+    image: haproxy:2.9-alpine
+    networks:
+      - lavalink-overlay
+    ports:
+      - target: 2333
+        published: 2333
+        protocol: tcp
+        mode: ingress
+      - target: 9000
+        published: 9000
+        protocol: tcp
+        mode: ingress
+      - target: 8404
+        published: 8404
+        protocol: tcp
+        mode: ingress
+    configs:
+      - source: haproxy-config
+        target: /usr/local/etc/haproxy/haproxy.cfg
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - node.role == manager
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      resources:
+        limits:
+          cpus: '2'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+  # ============================================================================
+  # PROMETHEUS - MONITORING
+  # ============================================================================
+  prometheus:
+    image: prom/prometheus:latest
+    networks:
+      - lavalink-overlay
+    ports:
+      - target: 9090
+        published: 9090
+        protocol: tcp
+        mode: ingress
+    configs:
+      - source: prometheus-config
+        target: /etc/prometheus/prometheus.yml
+    volumes:
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=30d'
+      - '--web.enable-lifecycle'
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+
+  # ============================================================================
+  # GRAFANA - DASHBOARD
+  # ============================================================================
+  grafana:
+    image: grafana/grafana:latest
+    networks:
+      - lavalink-overlay
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+        mode: ingress
+    volumes:
+      - grafana-data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD__FILE=/run/secrets/grafana-password
+      - GF_USERS_ALLOW_SIGN_UP=false
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G

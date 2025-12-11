@@ -1,0 +1,50 @@
+# ==============================================================================
+# IP Monitor Dockerfile
+# Health monitoring for Multi-IP Proxy Pool
+# ==============================================================================
+
+FROM alpine:3.19
+
+LABEL maintainer="lavalink-server"
+LABEL description="IP Health Monitor for Lavalink Proxy Pool"
+
+# Install dependencies
+RUN apk add --no-cache \
+    bash \
+    curl \
+    jq \
+    redis \
+    netcat-openbsd \
+    ca-certificates \
+    tzdata \
+    && rm -rf /var/cache/apk/*
+
+# Create app directory
+WORKDIR /app
+
+# Copy scripts
+COPY ip-monitor.sh /app/ip-monitor.sh
+COPY node-monitor.sh /app/node-monitor.sh
+
+# Make scripts executable
+RUN chmod +x /app/*.sh
+
+# Create log directory
+RUN mkdir -p /var/log
+
+# Environment variables
+ENV REDIS_URL=redis://redis:6379 \
+    CHECK_INTERVAL=30 \
+    COOLDOWN_DURATION=300 \
+    DISCORD_WEBHOOK="" \
+    SLACK_WEBHOOK=""
+
+# Health check endpoint port
+EXPOSE 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+    CMD curl -f http://localhost:8080/health || exit 1
+
+# Run the monitor
+CMD ["/app/ip-monitor.sh"]

@@ -1,0 +1,121 @@
+{
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2024-12-11T00:00:00+00:00",
+    "name": "Lavalink Cluster",
+    "author": "lavalink-server@github.com",
+    "description": "Production-grade Lavalink music streaming server with multi-IP routing and anti-block",
+    "features": null,
+    "docker_images": [
+        "ghcr.io/lavalink-devs/lavalink:4"
+    ],
+    "file_denylist": [],
+    "startup": {
+        "done": "Lavalink is ready to accept connections"
+    },
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"SERVER_PORT\": {\r\n        \"required\": true,\r\n        \"default\": \"2333\",\r\n        \"field_type\": \"text\"\r\n    },\r\n    \"LAVALINK_PASSWORD\": {\r\n        \"required\": true,\r\n        \"default\": \"youshallnotpass\",\r\n        \"field_type\": \"text\"\r\n    },\r\n    \"JAVA_OPTS\": {\r\n        \"required\": false,\r\n        \"default\": \"-Xmx4G -Xms2G\",\r\n        \"field_type\": \"text\"\r\n    }\r\n}",
+        "logs": "{}",
+        "stop": "^^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!/bin/bash\r\n\r\ncd /mnt/server\r\n\r\n# Download Lavalink\r\necho \"Downloading Lavalink...\"\r\ncurl -Lo Lavalink.jar https://github.com/lavalink-devs/Lavalink/releases/latest/download/Lavalink.jar\r\n\r\n# Download application.yml template\r\nif [ ! -f application.yml ]; then\r\n    echo \"Downloading default application.yml...\"\r\n    curl -Lo application.yml https://raw.githubusercontent.com/SatzzDev/lavalink-server/main/application.yml\r\nfi\r\n\r\n# Create plugins directory\r\nmkdir -p plugins\r\n\r\necho \"Installation complete!\"",
+            "container": "ghcr.io/parkervcp/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "sort": 1,
+            "name": "Server Port",
+            "description": "The port that Lavalink will listen on",
+            "env_variable": "SERVER_PORT",
+            "default_value": "2333",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer|between:1024,65535",
+            "field_type": "text"
+        },
+        {
+            "sort": 2,
+            "name": "Lavalink Password",
+            "description": "The password for connecting to this Lavalink instance",
+            "env_variable": "LAVALINK_PASSWORD",
+            "default_value": "youshallnotpass",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|min:8",
+            "field_type": "text"
+        },
+        {
+            "sort": 3,
+            "name": "Java Options",
+            "description": "JVM options for Lavalink (memory, GC, etc.)",
+            "env_variable": "JAVA_OPTS",
+            "default_value": "-Xmx4G -Xms2G -XX:+UseG1GC -XX:+ParallelRefProcEnabled",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "sort": 4,
+            "name": "Spotify Client ID",
+            "description": "Spotify API Client ID for LavaSrc plugin",
+            "env_variable": "SPOTIFY_CLIENT_ID",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "sort": 5,
+            "name": "Spotify Client Secret",
+            "description": "Spotify API Client Secret for LavaSrc plugin",
+            "env_variable": "SPOTIFY_CLIENT_SECRET",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "sort": 6,
+            "name": "YouTube Refresh Token",
+            "description": "YouTube OAuth refresh token for anti-block",
+            "env_variable": "YOUTUBE_REFRESH_TOKEN",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "sort": 7,
+            "name": "Proxy Host",
+            "description": "HTTP proxy host for YouTube requests",
+            "env_variable": "PROXY_HOST",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "sort": 8,
+            "name": "Proxy Port",
+            "description": "HTTP proxy port for YouTube requests",
+            "env_variable": "PROXY_PORT",
+            "default_value": "9000",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|integer|between:1,65535",
+            "field_type": "text"
+        }
+    ]
+}

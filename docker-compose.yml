@@ -1,0 +1,477 @@
+# ==============================================================================
+# Docker Compose - Production Lavalink Cluster
+# Enterprise-Grade Multi-IP Routing with Anti-Block
+# ==============================================================================
+
+version: "3.9"
+
+# ==============================================================================
+# NETWORKS
+# ==============================================================================
+networks:
+  lavalink-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+  
+  proxy-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.29.0.0/16
+
+# ==============================================================================
+# VOLUMES
+# ==============================================================================
+volumes:
+  lavalink-plugins:
+    driver: local
+  lavalink-logs:
+    driver: local
+  haproxy-data:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+  redis-data:
+    driver: local
+
+# ==============================================================================
+# SERVICES
+# ==============================================================================
+services:
+  # ============================================================================
+  # LAVALINK NODE 1 - SINGAPORE
+  # ============================================================================
+  lavalink-node1:
+    image: ghcr.io/lavalink-devs/lavalink:4
+    container_name: lavalink-node1-sg
+    restart: unless-stopped
+    networks:
+      - lavalink-network
+      - proxy-network
+    ports:
+      - "2333:2333"
+    volumes:
+      - ./cluster/node1.yml:/opt/Lavalink/application.yml:ro
+      - lavalink-plugins:/opt/Lavalink/plugins
+      - lavalink-logs:/opt/Lavalink/logs
+    environment:
+      - _JAVA_OPTIONS=-Xmx4G -Xms2G -XX:+UseG1GC -XX:+ParallelRefProcEnabled
+      - SERVER_PORT=2333
+      - LAVALINK_PASSWORD=${LAVALINK_PASSWORD:-SecurePassword123!}
+      - SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
+      - SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET}
+      - YOUTUBE_REFRESH_TOKEN=${YOUTUBE_REFRESH_TOKEN}
+      - CIPHER_PASSWORD=${CIPHER_PASSWORD}
+      - CIPHER_SERVER_URL=http://cipher-server:8001
+      - PROXY_HOST=haproxy
+      - PROXY_PORT=9000
+      - APPLE_MUSIC_TOKEN=${APPLE_MUSIC_TOKEN}
+      - DEEZER_MASTER_KEY=${DEEZER_MASTER_KEY}
+      - DEEZER_ARL=${DEEZER_ARL}
+      - SENTRY_DSN=${SENTRY_DSN}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:2333/version"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 6G
+        reservations:
+          cpus: '1'
+          memory: 2G
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "5"
+    labels:
+      - "com.lavalink.region=singapore"
+      - "com.lavalink.role=primary"
+      - "traefik.enable=true"
+
+  # ============================================================================
+  # LAVALINK NODE 2 - GERMANY
+  # ============================================================================
+  lavalink-node2:
+    image: ghcr.io/lavalink-devs/lavalink:4
+    container_name: lavalink-node2-de
+    restart: unless-stopped
+    networks:
+      - lavalink-network
+      - proxy-network
+    ports:
+      - "2334:2334"
+    volumes:
+      - ./cluster/node2.yml:/opt/Lavalink/application.yml:ro
+      - lavalink-plugins:/opt/Lavalink/plugins
+      - lavalink-logs:/opt/Lavalink/logs
+    environment:
+      - _JAVA_OPTIONS=-Xmx4G -Xms2G -XX:+UseG1GC -XX:+ParallelRefProcEnabled
+      - SERVER_PORT=2334
+      - LAVALINK_PASSWORD=${LAVALINK_PASSWORD:-SecurePassword123!}
+      - SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
+      - SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET}
+      - YOUTUBE_REFRESH_TOKEN=${YOUTUBE_REFRESH_TOKEN}
+      - CIPHER_PASSWORD=${CIPHER_PASSWORD}
+      - CIPHER_SERVER_URL=http://cipher-server:8001
+      - PROXY_HOST=haproxy
+      - PROXY_PORT=9000
+      - APPLE_MUSIC_TOKEN=${APPLE_MUSIC_TOKEN}
+      - DEEZER_MASTER_KEY=${DEEZER_MASTER_KEY}
+      - DEEZER_ARL=${DEEZER_ARL}
+      - SENTRY_DSN=${SENTRY_DSN}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:2334/version"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 6G
+        reservations:
+          cpus: '1'
+          memory: 2G
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "5"
+    labels:
+      - "com.lavalink.region=germany"
+      - "com.lavalink.role=primary"
+
+  # ============================================================================
+  # LAVALINK NODE 3 - US-EAST
+  # ============================================================================
+  lavalink-node3:
+    image: ghcr.io/lavalink-devs/lavalink:4
+    container_name: lavalink-node3-us
+    restart: unless-stopped
+    networks:
+      - lavalink-network
+      - proxy-network
+    ports:
+      - "2335:2335"
+    volumes:
+      - ./cluster/node3.yml:/opt/Lavalink/application.yml:ro
+      - lavalink-plugins:/opt/Lavalink/plugins
+      - lavalink-logs:/opt/Lavalink/logs
+    environment:
+      - _JAVA_OPTIONS=-Xmx4G -Xms2G -XX:+UseG1GC -XX:+ParallelRefProcEnabled
+      - SERVER_PORT=2335
+      - LAVALINK_PASSWORD=${LAVALINK_PASSWORD:-SecurePassword123!}
+      - SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
+      - SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET}
+      - YOUTUBE_REFRESH_TOKEN=${YOUTUBE_REFRESH_TOKEN}
+      - CIPHER_PASSWORD=${CIPHER_PASSWORD}
+      - CIPHER_SERVER_URL=http://cipher-server:8001
+      - PROXY_HOST=haproxy
+      - PROXY_PORT=9000
+      - APPLE_MUSIC_TOKEN=${APPLE_MUSIC_TOKEN}
+      - DEEZER_MASTER_KEY=${DEEZER_MASTER_KEY}
+      - DEEZER_ARL=${DEEZER_ARL}
+      - SENTRY_DSN=${SENTRY_DSN}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:2335/version"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 6G
+        reservations:
+          cpus: '1'
+          memory: 2G
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "5"
+    labels:
+      - "com.lavalink.region=us-east"
+      - "com.lavalink.role=primary"
+
+  # ============================================================================
+  # LAVALINK BACKUP NODE - INDIA
+  # ============================================================================
+  lavalink-backup:
+    image: ghcr.io/lavalink-devs/lavalink:4
+    container_name: lavalink-backup-in
+    restart: unless-stopped
+    networks:
+      - lavalink-network
+      - proxy-network
+    ports:
+      - "2336:2336"
+    volumes:
+      - ./cluster/node-backup.yml:/opt/Lavalink/application.yml:ro
+      - lavalink-plugins:/opt/Lavalink/plugins
+      - lavalink-logs:/opt/Lavalink/logs
+    environment:
+      - _JAVA_OPTIONS=-Xmx2G -Xms1G -XX:+UseG1GC -XX:+ParallelRefProcEnabled
+      - SERVER_PORT=2336
+      - LAVALINK_PASSWORD=${LAVALINK_PASSWORD:-SecurePassword123!}
+      - SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
+      - SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET}
+      - YOUTUBE_REFRESH_TOKEN=${YOUTUBE_REFRESH_TOKEN}
+      - CIPHER_PASSWORD=${CIPHER_PASSWORD}
+      - CIPHER_SERVER_URL=http://cipher-server:8001
+      - PROXY_HOST=haproxy
+      - PROXY_PORT=9000
+      - APPLE_MUSIC_TOKEN=${APPLE_MUSIC_TOKEN}
+      - DEEZER_MASTER_KEY=${DEEZER_MASTER_KEY}
+      - DEEZER_ARL=${DEEZER_ARL}
+      - SENTRY_DSN=${SENTRY_DSN}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:2336/version"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "3"
+    labels:
+      - "com.lavalink.region=india"
+      - "com.lavalink.role=backup"
+
+  # ============================================================================
+  # HAPROXY - Multi-IP Proxy Router
+  # ============================================================================
+  haproxy:
+    image: haproxy:2.9-alpine
+    container_name: haproxy-router
+    restart: unless-stopped
+    networks:
+      - lavalink-network
+      - proxy-network
+    ports:
+      - "9000:9000"    # YouTube Proxy
+      - "8404:8404"    # HAProxy Stats
+      - "80:80"        # HTTP
+      - "443:443"      # HTTPS (if using TLS termination)
+    volumes:
+      - ./proxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+      - haproxy-data:/var/lib/haproxy
+    environment:
+      - SG_IP_1=${SG_IP_1:-127.0.0.1}
+      - SG_IP_2=${SG_IP_2:-127.0.0.1}
+      - DE_IP_1=${DE_IP_1:-127.0.0.1}
+      - DE_IP_2=${DE_IP_2:-127.0.0.1}
+      - US_IP_1=${US_IP_1:-127.0.0.1}
+      - US_IP_2=${US_IP_2:-127.0.0.1}
+      - BACKUP_IP_1=${BACKUP_IP_1:-127.0.0.1}
+      - BACKUP_IP_2=${BACKUP_IP_2:-127.0.0.1}
+      - HAPROXY_STATS_PASSWORD=${HAPROXY_STATS_PASSWORD:-admin123}
+    healthcheck:
+      test: ["CMD", "haproxy", "-c", "-f", "/usr/local/etc/haproxy/haproxy.cfg"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+
+  # ============================================================================
+  # NGINX - TLS Termination & Fallback
+  # ============================================================================
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-proxy
+    restart: unless-stopped
+    networks:
+      - lavalink-network
+      - proxy-network
+    ports:
+      - "8080:80"
+      - "8443:443"
+      - "9001:9001"
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - haproxy
+      - lavalink-node1
+      - lavalink-node2
+      - lavalink-node3
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+
+  # ============================================================================
+  # REDIS - Session Store & Rate Limiting
+  # ============================================================================
+  redis:
+    image: redis:7-alpine
+    container_name: redis-cache
+    restart: unless-stopped
+    networks:
+      - lavalink-network
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+
+  # ============================================================================
+  # IP HEALTH MONITOR
+  # ============================================================================
+  ip-monitor:
+    build:
+      context: ./scripts
+      dockerfile: Dockerfile.monitor
+    container_name: ip-health-monitor
+    restart: unless-stopped
+    networks:
+      - lavalink-network
+      - proxy-network
+    volumes:
+      - ./proxy/ip-pool.yml:/app/config/ip-pool.yml:ro
+      - ./scripts:/app/scripts:ro
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - CHECK_INTERVAL=30
+      - COOLDOWN_DURATION=300
+      - SLACK_WEBHOOK=${SLACK_WEBHOOK_URL}
+      - DISCORD_WEBHOOK=${DISCORD_WEBHOOK_URL}
+    depends_on:
+      - redis
+      - haproxy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ============================================================================
+  # PROMETHEUS - Metrics Collection
+  # ============================================================================
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: unless-stopped
+    networks:
+      - lavalink-network
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=30d'
+      - '--web.enable-lifecycle'
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ============================================================================
+  # GRAFANA - Monitoring Dashboard
+  # ============================================================================
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    networks:
+      - lavalink-network
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin123}
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_SERVER_ROOT_URL=http://localhost:3000
+    depends_on:
+      - prometheus
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ============================================================================
+  # CIPHER SERVER (YouTube Cipher Resolver)
+  # ============================================================================
+  cipher-server:
+    build:
+      context: ./scripts
+      dockerfile: Dockerfile.cipher
+    container_name: cipher-server
+    restart: unless-stopped
+    networks:
+      - lavalink-network
+    ports:
+      - "8001:8001"
+    environment:
+      - PORT=8001
+      - PASSWORD=${CIPHER_PASSWORD:-SatzzDev}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M

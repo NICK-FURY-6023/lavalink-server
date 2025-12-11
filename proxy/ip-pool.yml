@@ -1,0 +1,254 @@
+# ==============================================================================
+# Multi-IP Exit Node Pool Configuration
+# Production-Grade IP Rotation for YouTube Anti-Block
+# ==============================================================================
+
+# Format: IP:PORT:REGION:WEIGHT:STATUS
+# STATUS: active | standby | backup | maintenance
+
+# ==============================
+# SINGAPORE EXIT NODES (Asia Pacific Primary)
+# ==============================
+SINGAPORE_NODES:
+  - ip: "${SG_IP_1}"
+    port: 443
+    region: "ap-southeast-1"
+    weight: 100
+    status: "active"
+    provider: "datacenter"
+    tags:
+      - "primary"
+      - "low-latency"
+      - "asia"
+    health_check:
+      interval: 30
+      timeout: 10
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+
+  - ip: "${SG_IP_2}"
+    port: 443
+    region: "ap-southeast-1"
+    weight: 100
+    status: "active"
+    provider: "datacenter"
+    tags:
+      - "primary"
+      - "asia"
+
+  - ip: "${SG_IP_3}"
+    port: 443
+    region: "ap-southeast-1"
+    weight: 80
+    status: "standby"
+    provider: "residential"
+    tags:
+      - "secondary"
+      - "residential"
+      - "asia"
+
+# ==============================
+# GERMANY EXIT NODES (Europe Primary)
+# ==============================
+GERMANY_NODES:
+  - ip: "${DE_IP_1}"
+    port: 443
+    region: "eu-central-1"
+    weight: 100
+    status: "active"
+    provider: "datacenter"
+    tags:
+      - "primary"
+      - "low-latency"
+      - "europe"
+
+  - ip: "${DE_IP_2}"
+    port: 443
+    region: "eu-central-1"
+    weight: 100
+    status: "active"
+    provider: "datacenter"
+    tags:
+      - "primary"
+      - "europe"
+
+  - ip: "${DE_IP_3}"
+    port: 443
+    region: "eu-west-1"
+    weight: 80
+    status: "standby"
+    provider: "residential"
+    tags:
+      - "secondary"
+      - "europe"
+
+# ==============================
+# US-EAST EXIT NODES (Americas Primary)
+# ==============================
+US_NODES:
+  - ip: "${US_IP_1}"
+    port: 443
+    region: "us-east-1"
+    weight: 100
+    status: "active"
+    provider: "datacenter"
+    tags:
+      - "primary"
+      - "low-latency"
+      - "americas"
+
+  - ip: "${US_IP_2}"
+    port: 443
+    region: "us-east-2"
+    weight: 100
+    status: "active"
+    provider: "datacenter"
+    tags:
+      - "primary"
+      - "americas"
+
+  - ip: "${US_IP_3}"
+    port: 443
+    region: "us-west-1"
+    weight: 80
+    status: "standby"
+    provider: "datacenter"
+    tags:
+      - "secondary"
+      - "americas"
+
+# ==============================
+# BACKUP/FAILOVER NODES
+# ==============================
+BACKUP_NODES:
+  - ip: "${BACKUP_IP_1}"
+    port: 443
+    region: "ap-south-1"
+    weight: 50
+    status: "backup"
+    provider: "datacenter"
+    tags:
+      - "failover"
+      - "india"
+      - "backup"
+
+  - ip: "${BACKUP_IP_2}"
+    port: 443
+    region: "ap-northeast-1"
+    weight: 50
+    status: "backup"
+    provider: "datacenter"
+    tags:
+      - "failover"
+      - "japan"
+      - "backup"
+
+  - ip: "${BACKUP_IP_3}"
+    port: 443
+    region: "eu-north-1"
+    weight: 40
+    status: "backup"
+    provider: "residential"
+    tags:
+      - "failover"
+      - "emergency"
+
+# ==============================
+# ROTATION CONFIGURATION
+# ==============================
+ROTATION_CONFIG:
+  # Rotation strategy: roundrobin | leastconn | random | weighted
+  strategy: "weighted"
+  
+  # Session persistence
+  sticky_sessions:
+    enabled: true
+    duration: 300  # seconds
+    cookie_name: "LLPROXY"
+  
+  # 429 Detection & IP Cooldown
+  rate_limit_detection:
+    enabled: true
+    cooldown_duration: 300  # 5 minutes
+    detection_threshold: 3  # 3 consecutive 429s
+    recovery_check_interval: 60
+  
+  # Health check settings
+  health_check:
+    enabled: true
+    interval: 30
+    timeout: 10
+    protocol: "https"
+    path: "/generate_204"
+    expected_status: 204
+  
+  # Failover settings
+  failover:
+    enabled: true
+    max_retries: 3
+    retry_delay: 1000  # milliseconds
+    circuit_breaker:
+      enabled: true
+      failure_threshold: 5
+      recovery_timeout: 60
+
+# ==============================
+# ANTI-DETECTION CONFIGURATION
+# ==============================
+ANTI_DETECTION:
+  # User agent rotation
+  user_agents:
+    - "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    - "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0"
+    - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.1 Safari/605.1.15"
+    - "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    - "Mozilla/5.0 (iPhone; CPU iPhone OS 17_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.1 Mobile/15E148 Safari/604.1"
+    - "Mozilla/5.0 (Linux; Android 14; SM-S918B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.43 Mobile Safari/537.36"
+  
+  # Header spoofing
+  headers:
+    rotate_user_agent: true
+    add_accept_language: true
+    languages:
+      - "en-US,en;q=0.9"
+      - "en-GB,en;q=0.9"
+      - "de-DE,de;q=0.9,en;q=0.8"
+    remove_identifying_headers: true
+    
+  # TLS fingerprint randomization
+  tls:
+    randomize_fingerprint: true
+    supported_versions:
+      - "TLSv1.2"
+      - "TLSv1.3"
+
+# ==============================
+# MONITORING & ALERTING
+# ==============================
+MONITORING:
+  metrics:
+    enabled: true
+    port: 9090
+    path: "/metrics"
+  
+  alerts:
+    slack_webhook: "${SLACK_WEBHOOK_URL}"
+    discord_webhook: "${DISCORD_WEBHOOK_URL}"
+    
+    triggers:
+      - name: "high_429_rate"
+        condition: "429_rate > 0.05"  # More than 5% 429 responses
+        severity: "critical"
+        
+      - name: "node_down"
+        condition: "node_health == 0"
+        severity: "critical"
+        
+      - name: "high_latency"
+        condition: "avg_latency > 2000"  # More than 2 seconds
+        severity: "warning"
+        
+      - name: "low_available_ips"
+        condition: "available_ips < 3"
+        severity: "warning"

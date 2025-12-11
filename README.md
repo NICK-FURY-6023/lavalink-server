@@ -203,21 +203,54 @@
     ### https://github.com/topi314/LavaSrc#deezer
     - arl: "your deezer arl"
 
-- YandexMusic: 
+- YandexMusic (Russian/CIS Content): 
     ### https://github.com/topi314/LavaSrc#yandex-music
-    - accessToken: "your access token"
+    - accessToken: "your access token" (optional - works without auth for basic access)
 
 - VkMusic: 
     ### https://github.com/topi314/LavaSrc#vk-music
     - userToken: "your user token"
 
-- Tidal: 
+- JioSaavn (Indian/Bollywood/Regional - **NEW**): 
+    ### No authentication required!
+    - Supports: Hindi, Punjabi, Tamil, Telugu, Bengali, Marathi, Kannada, and more
+    - Quality: 320kbps AAC
+    - decryption.secretKey: "38346591" (pre-configured)
+
+- Tidal (Hi-Fi Lossless Quality - **Enhanced**): 
     ### https://github.com/topi314/LavaSrc#tidal
-    - token: "your tidal token"
+    - countryCode: "US" (or IN, GB, DE, etc.)
+    - token: "your tidal token" (optional - for premium quality)
+    - Quality: Up to 9216kbps MQA / 1411kbps FLAC
 
 - Qobuz: 
     ### https://github.com/topi314/LavaSrc#qobuz
     - token: "your user oauth token"
+</details>
+
+<details>
+<summary><strong>Search Commands</strong></summary>
+
+Use these search prefixes in your Discord bot:
+
+| Platform | Search Command | Example |
+|----------|----------------|---------|
+| YouTube | `ytsearch:` | `ytsearch:despacito` |
+| Spotify | `spsearch:` | `spsearch:blinding lights` |
+| Apple Music | `amsearch:` | `amsearch:drivers license` |
+| Deezer | `dzsearch:` | `dzsearch:shape of you` |
+| JioSaavn | `jssearch:` | `jssearch:kesariya` or `jssearch:tum hi ho` |
+| Tidal | `tdsearch:` | `tdsearch:starboy` |
+| SoundCloud | `scsearch:` | `scsearch:indie song` |
+| Yandex Music | `ymsearch:` | `ymsearch:russian song` |
+
+**Direct URL Support:**
+- YouTube: `https://www.youtube.com/watch?v=...`
+- Spotify: `https://open.spotify.com/track/...`
+- JioSaavn: `https://www.jiosaavn.com/song/...`
+- Tidal: `https://tidal.com/browse/track/...`
+- SoundCloud: `https://soundcloud.com/...`
+- And more!
 </details>
 
 ## ☕ Donate
